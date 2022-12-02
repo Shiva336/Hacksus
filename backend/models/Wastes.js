@@ -13,16 +13,13 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         m: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
+            type: DataTypes.INTEGER,
         },
         g: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
+            type: DataTypes.INTEGER,
         },
         p: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
+            type: DataTypes.INTEGER,
         }
     });
     return Wastes;
