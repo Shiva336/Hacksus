@@ -10,8 +10,8 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const wasteList = req.body;
-    await Wastes.create(wasteList);
-    res.json(wasteList);
+    const waste = req.body;
+    Wastes.create(waste);
+    console.log("suxcc");
 });
 module.exports = router ;

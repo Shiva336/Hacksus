@@ -7,8 +7,8 @@ app.use(cors());
 const db = require('./models');
 
 //Routers - endpoints
-const postRouter = require('./routes/wastes');
-app.use("/wastes",postRouter);
+const Wasterouter = require('./routes/Wastes');
+app.use("/wastes",Wasterouter);
 
 db.sequelize.sync().then(()=>{
     
