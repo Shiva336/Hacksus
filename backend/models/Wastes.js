@@ -12,15 +12,15 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        M: {
+        m: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
-        G: {
+        g: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
-        P: {
+        p: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         }
