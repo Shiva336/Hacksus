@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "./Map.css";
 import axios from "axios";
 import * as Yup from "yup";
 
@@ -49,8 +49,8 @@ function Server() {
   var waypoints = []
     var map
 
-    let i = 0;
     function optimizeM() {
+      let i = 0;
       for(i=0; i<Mtruck.length; i++)
       {
         const coord = Mtruck[i];
@@ -91,8 +91,8 @@ function Server() {
         })
     }
 
-    i = 0;
     function optimizeG() {
+      let i = 0;
       for(i=0; i<Gtruck.length; i++)
       {
         const coord = Gtruck[i];
@@ -133,8 +133,8 @@ function Server() {
         })
     }
 
-    i = 0;
     function optimizeP() {
+      let i = 0;
       for(i=0; i<Ptruck.length; i++)
       {
         const coord = Ptruck[i];
@@ -202,8 +202,9 @@ function Server() {
 
     return (  
       <div className="Mapscontainer"> 
-        <button onClick={optimizeM}>Metal Truck</button> <button onClick={optimizeG}>Glass Truck</button> <button onClick={optimizeP}>Paper Truck</button>
-        <div id='map'></div>
+      <div className="buttonWrapper">
+        <button onClick={optimizeM} className="mButton">Metal Truck</button> <button onClick={optimizeG} className="gButton">Glass Truck</button> <button onClick={optimizeP} className="pButton">Paper Truck</button></div>
+        <div id='map' className="mapContainer-maps"></div>
         <div id='summary-optimize'></div>
       </div>
       );

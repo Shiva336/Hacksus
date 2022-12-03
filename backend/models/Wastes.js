@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        distance: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
         m: {
             type: DataTypes.INTEGER,
         },

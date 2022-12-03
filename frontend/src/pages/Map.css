@@ -1,0 +1,25 @@
+.buttonWrapper{
+    margin-top:80px;
+}
+
+.mapContainer-maps{
+    margin-top:10px;
+}
+
+#map {
+    height: 530px;
+    width: 1000px;
+}
+
+.mButton{
+    background-color:green;
+    color:white;
+}
+.gButton{
+    background-color:blue;
+    color:white;
+}
+.pButton{
+    background-color:red;
+    color:white;
+}
