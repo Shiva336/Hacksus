@@ -68,6 +68,22 @@ function Server() {
         })
     }
 
+    function showMap(center) {
+      map = tt.map({
+        key: 'G3n7k1qeeVQBZyftR0uSratebx0VYCQz',  // Get on for free at developer.tomtom.com
+        container: 'map',
+        center: center,
+        zoom: 13,
+        pitch: 25
+      });
+
+      map.on('click', function (event) {
+        const coord = event.lngLat
+        waypoints.push(coord)
+        new tt.Marker().setLngLat(coord).addTo(map)
+      })
+    }
+
     function route() {
       tt.services.calculateRoute({
         key: 'G3n7k1qeeVQBZyftR0uSratebx0VYCQz', // Get on for free at developer.tomtom.com
@@ -104,33 +120,14 @@ function Server() {
 
     tt.services.fuzzySearch({
       key: 'G3n7k1qeeVQBZyftR0uSratebx0VYCQz',  // Get on for free at developer.tomtom.com
-      query: 'Rajagiri School Engineering and Technology'
+      query: 'kakkanad'
     }).then(function (response) {
       showMap(response.results[0].position)
     });
 
-
-
-    function showMap(center) {
-      map = tt.map({
-        key: 'G3n7k1qeeVQBZyftR0uSratebx0VYCQz',  // Get on for free at developer.tomtom.com
-        container: 'map',
-        center: center,
-        zoom: 13,
-        pitch: 25
-      });
-
-      map.on('click', function (event) {
-        const coord = event.lngLat
-        waypoints.push(coord)
-        new tt.Marker().setLngLat(coord).addTo(map)
-      })
-    }
-
-
     return (  
       <div className="Mapscontainer"> 
-        <button onclick="route()">Route</button> <button onclick="optimize()">Optimize</button>
+        <button onClick={route}>Route</button> <button onClick={optimize}>Optimize</button>
         <div id='map'></div>
         <div id='summary-route'></div>
         <div id='summary-optimize'></div>
