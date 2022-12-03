@@ -11,6 +11,9 @@ const db = require('./models');
 const postRouter = require('./routes/Wastes');
 app.use("/wastes",postRouter);
 
+const CoordRouter = require('./routes/Coord');
+app.use("/coord",CoordRouter);
+
 db.sequelize.sync().then(()=>{
     
     app.listen(process.env.PORT || 3001,() => {

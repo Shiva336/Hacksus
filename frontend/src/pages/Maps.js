@@ -79,6 +79,7 @@ function Server() {
 
       map.on('click', function (event) {
         const coord = event.lngLat
+        console.log(coord);
         waypoints.push(coord)
         new tt.Marker().setLngLat(coord).addTo(map)
       })

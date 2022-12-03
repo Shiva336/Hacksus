@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const { Wastes, sequelize } = require("../models");
+const { Coord, sequelize } = require("../models");
 
 
 router.get("/maps", async (req, res) => { 
-    const wasteList = await Wastes.findAll();
-    res.json(wasteList);
+    const CoordList = await Coord.findAll();
+    res.json(CoordList);
 });
 
 router.post("/", async (req, res) => {
     const Posts=req.body;
-    await Wastes.create(Posts);
+    await Coord.create(Posts);
 });
 module.exports = router ;
