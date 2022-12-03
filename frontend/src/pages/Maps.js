@@ -12,38 +12,61 @@ function Server() {
     const Ptruck = [];
 
     const [listOfWastes, setListOfWastes] = useState([]);
+    const [listOfCoord, setListOfCoord] = useState([]);
     let navigate= useNavigate();
 
     useEffect(() => {
       axios.get("http://localhost:3001/wastes/maps").then( (response) => {
         setListOfWastes(response.data);
       });
+      axios.get("http://localhost:3001/coord/maps").then( (response) => {
+        setListOfCoord(response.data);
+      });
     }, []);
+    
 
     {listOfWastes.map((value,key)=> {
       if(value.m > 0)
-        Mtruck.push(value.address);
+      {
+        Mtruck.push({"lat": listOfCoord[key].lat,
+        "lng": listOfCoord[key].lng
+      });
+      }
       if(value.p > 0)
-        Ptruck.push(value.address);
+      {
+        Ptruck.push({"lat": listOfCoord[key].lat,
+        "lng": listOfCoord[key].lng
+        });
+      }
       if(value.g > 0)
-        Gtruck.push(value.address);
-   })} 
-
-  //  console.log(Mtruck);
-  //  console.log(Gtruck);
-  //  console.log(Ptruck);
+      {
+        Gtruck.push({"lat": listOfCoord[key].lat,
+        "lng": listOfCoord[key].lng
+        });
+      }
+   });}
 
   var waypoints = []
     var map
 
-    function optimize() {
+    let i = 0;
+    function optimizeM() {
+      for(i=0; i<Mtruck.length; i++)
+      {
+        const coord = Mtruck[i];
+        // console.log(coord);
+        waypoints.push(coord);
+        new tt.Marker().setLngLat(coord).addTo(map);
+      }
+      
       tt.services.calculateRoute({
         key: 'G3n7k1qeeVQBZyftR0uSratebx0VYCQz', // Get one for free at developer.tomtom.com
-        locations: waypoints,
+        locations: Mtruck,
         routeType: 'shortest',
         computeBestOrder: true
       })
         .then((result) => {
+          
           console.log(result)
           const summary = document.getElementById('summary-optimize')
           summary.innerHTML = 'Distance optimize ' + result.routes[0].summary.lengthInMeters + ' mts'
@@ -68,6 +91,90 @@ function Server() {
         })
     }
 
+    i = 0;
+    function optimizeG() {
+      for(i=0; i<Gtruck.length; i++)
+      {
+        const coord = Gtruck[i];
+        // console.log(coord);
+        waypoints.push(coord);
+        new tt.Marker().setLngLat(coord).addTo(map);
+      }
+      
+      tt.services.calculateRoute({
+        key: 'G3n7k1qeeVQBZyftR0uSratebx0VYCQz', // Get one for free at developer.tomtom.com
+        locations: Gtruck,
+        routeType: 'shortest',
+        computeBestOrder: true
+      })
+        .then((result) => {
+          
+          console.log(result)
+          const summary = document.getElementById('summary-optimize')
+          summary.innerHTML = 'Distance optimize ' + result.routes[0].summary.lengthInMeters + ' mts'
+
+          const geojson = result.toGeoJson()
+          if (map.getLayer('optimized')) {
+            map.removeLayer('optimized')
+            map.removeSource('optimized')
+          }
+          map.addLayer({
+            'id': 'optimized',
+            'type': 'line',
+            'source': {
+              'type': 'geojson',
+              'data': geojson
+            },
+            'paint': {
+              'line-color': 'blue',
+              'line-width': 8
+            }
+          });
+        })
+    }
+
+    i = 0;
+    function optimizeP() {
+      for(i=0; i<Ptruck.length; i++)
+      {
+        const coord = Ptruck[i];
+        // console.log(coord);
+        waypoints.push(coord);
+        new tt.Marker().setLngLat(coord).addTo(map);
+      }
+      
+      tt.services.calculateRoute({
+        key: 'G3n7k1qeeVQBZyftR0uSratebx0VYCQz', // Get one for free at developer.tomtom.com
+        locations: Ptruck,
+        routeType: 'shortest',
+        computeBestOrder: true
+      })
+        .then((result) => {
+          
+          console.log(result)
+          const summary = document.getElementById('summary-optimize')
+          summary.innerHTML = 'Distance optimize ' + result.routes[0].summary.lengthInMeters + ' mts'
+
+          const geojson = result.toGeoJson()
+          if (map.getLayer('optimized')) {
+            map.removeLayer('optimized')
+            map.removeSource('optimized')
+          }
+          map.addLayer({
+            'id': 'optimized',
+            'type': 'line',
+            'source': {
+              'type': 'geojson',
+              'data': geojson
+            },
+            'paint': {
+              'line-color': 'red',
+              'line-width': 8
+            }
+          });
+        })
+    }
+
     function showMap(center) {
       map = tt.map({
         key: 'G3n7k1qeeVQBZyftR0uSratebx0VYCQz',  // Get on for free at developer.tomtom.com
@@ -77,45 +184,12 @@ function Server() {
         pitch: 25
       });
 
-      map.on('click', function (event) {
-        const coord = event.lngLat
-        console.log(coord);
-        waypoints.push(coord)
-        new tt.Marker().setLngLat(coord).addTo(map)
-      })
+      // map.on('click', function (event) {
+      //   const coord = event.lngLat
+      //   waypoints.push(coord)
+      //   new tt.Marker().setLngLat(coord).addTo(map)
+      // })
     }
-
-    function route() {
-      tt.services.calculateRoute({
-        key: 'G3n7k1qeeVQBZyftR0uSratebx0VYCQz', // Get on for free at developer.tomtom.com
-        routeType: 'shortest',
-        locations: waypoints
-      })
-        .then((result) => {
-          console.log(result)
-          const summary = document.getElementById('summary-route')
-          summary.innerHTML = 'Distance route ' + result.routes[0].summary.lengthInMeters + ' mts'
-          const geojson = result.toGeoJson()
-          if (map.getLayer('route')) {
-            map.removeLayer('route')
-            map.removeSource('route')
-          }
-
-          map.addLayer({
-            'id': 'route',
-            'type': 'line',
-            'source': {
-              'type': 'geojson',
-              'data': geojson
-            },
-            'paint': {
-              'line-color': 'orange',
-              'line-width': 8
-            }
-          });
-        })
-    }
-
 
     tt.setProductInfo('<your-product-id>', '<your-product-version>')
 
@@ -128,9 +202,8 @@ function Server() {
 
     return (  
       <div className="Mapscontainer"> 
-        <button onClick={route}>Route</button> <button onClick={optimize}>Optimize</button>
+        <button onClick={optimizeM}>Metal Truck</button> <button onClick={optimizeG}>Glass Truck</button> <button onClick={optimizeP}>Paper Truck</button>
         <div id='map'></div>
-        <div id='summary-route'></div>
         <div id='summary-optimize'></div>
       </div>
       );
