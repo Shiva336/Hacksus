@@ -1,8 +1,6 @@
 import React from "react";
 import "./Home.css";
 import axios from "axios";
-import * as Yup from "yup";
-
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -33,10 +31,14 @@ function Home() {
     axios.post("http://localhost:3001/wastes",data).then((response) => {
       console.log(response);
     });
+    navigate("/");
   };
-  
   return (
     <div className="homeContainer">
+      <div className="headerContainer">
+      <div className="headerText">
+          Together For A Better World!</div>
+     </div>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
@@ -70,7 +72,7 @@ function Home() {
           />
           <br/>
 
-          <p>Enter Waste Quantity in KGs here</p>
+          <p>Enter the quantity of each type of wastes in KGs</p>
           <label htmlFor="m">Metal: </label>
           <ErrorMessage name="m" component="span" />
           <Field

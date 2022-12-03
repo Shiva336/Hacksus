@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './pages/Home';
 import Map from './pages/Maps'
+import logo from "./assets/logo.jpg"
 import { BrowserRouter as Router, Route, Routes,Link } from "react-router-dom";
 
 
@@ -8,6 +9,7 @@ function App() {
   return (
     <div className="App">  <Router>
     <div className="navbar">
+    <img src={logo} alt="truck" className="logo"></img>
       <div className="links">
         <Link to="/"> Home Page</Link>
         <Link to="/maps"> Map Page</Link>

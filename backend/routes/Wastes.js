@@ -4,8 +4,7 @@ const router = express.Router();
 const { Wastes } = require("../models");
 
 
-router.get("/", async (req, res) => { console.log("Request data:");
-console.log(req);
+router.get("/maps", async (req, res) => { 
     const wasteList = await Wastes.findAll();
     res.json(wasteList);
 });

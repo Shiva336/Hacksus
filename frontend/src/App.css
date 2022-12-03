@@ -11,21 +11,52 @@ body {
   padding: 0;
 }
 
-/* CREATE POST PAGE CSS */
+.headerText{
+  margin-top: 60px;
+  font-size:20px;
+}
 
+.logo{
+  width: 65px;
+  border-radius:60px;
+  height: auto;
+  -webkit-border-radius:60px;
+  -moz-border-radius:60px;
+  -ms-border-radius:60px;
+  -o-border-radius:60px;
+}
+.headerContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.headerText{
+  margin-top: 100px;
+  font-weight:bolder;
+  text-align: center;
+  margin-left: 40px;
+  ;
+}
 .formContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 10px;
-  width: 500px;
+  margin-top: 32px;
+  width: 300px;
+  font-weight: bold;
   height: auto;
   padding: 20px;
   border: 5px solid dodgerblue;
-  border-radius: 5px;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
 }
 
-
+.formContainer:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
 .formContainer button {
   margin-top: 15px;
   height: 40px;
@@ -47,6 +78,8 @@ span {
 /* NAVBAR */
 
 .navbar {
+  z-index: 100;
+  position: fixed;
   width: 100%;
   height: 70px;
   background-color: dodgerblue;
