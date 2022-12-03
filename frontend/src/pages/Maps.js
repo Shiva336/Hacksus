@@ -1,5 +1,5 @@
 import React from "react";
-import "./Map.css";
+import "./Home.css";
 import axios from "axios";
 import * as Yup from "yup";
 
@@ -202,9 +202,8 @@ function Server() {
 
     return (  
       <div className="Mapscontainer"> 
-      <div className="buttonWrapper">
-        <button onClick={optimizeM} className="mButton">Metal Truck</button> <button onClick={optimizeG} className="gButton">Glass Truck</button> <button onClick={optimizeP} className="pButton">Paper Truck</button></div>
-        <div id='map' className="mapContainer-maps"></div>
+        <button onClick={optimizeM}>Metal Truck</button> <button onClick={optimizeG}>Glass Truck</button> <button onClick={optimizeP}>Paper Truck</button>
+        <div id='map'></div>
         <div id='summary-optimize'></div>
       </div>
       );

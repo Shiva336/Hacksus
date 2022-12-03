@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .homeContainer{
     margin-left: 0px;
     display: flex;
@@ -16,3 +17,18 @@
     height: 500px;
     width: 1000px;
   }
+=======
+.homeContainer{
+    margin-left: 0px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+    
+}
+.formContainer{
+    position:fixed; left:40px;
+}
+.mapConfirmContainer{
+    margin-left:300px;
+}
+>>>>>>> 59cd1e6a6788796f16066c9f033ebc7ab50f98a4

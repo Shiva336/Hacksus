@@ -1,3 +1,5 @@
+
+
 .App {
   width: 100%;
   height: auto;
@@ -11,50 +13,21 @@ body {
   padding: 0;
 }
 
-.headerText{
-  margin-top: 60px;
-  font-size:20px;
-}
+/* CREATE POST PAGE CSS */
 
-.logo{
-  width: 65px;
-  border-radius:60px;
-  height: auto;
-  -webkit-border-radius:60px;
-  -moz-border-radius:60px;
-  -ms-border-radius:60px;
-  -o-border-radius:60px;
-}
-.headerContainer{
-  display: flex;
-  flex-direction: row;
-}
-
-.headerText{
-  margin-top: 70px;
-  font-weight:bolder;
-  position:fixed; left:40px;
-  font-size: 20px;
-}
 .formContainer {
   display: flex;
   flex-direction: column;
-  margin-top: 72px;
-  width: 300px;
-  font-weight: bold;
+  justify-content: center;
+  margin-top: 10px;
+  width: 500px;
   height: auto;
   padding: 20px;
   border: 5px solid dodgerblue;
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
+  border-radius: 5px;
 }
 
-.formContainer:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,.2); 
-}
+
 .formContainer button {
   margin-top: 15px;
   height: 40px;
@@ -76,8 +49,6 @@ span {
 /* NAVBAR */
 
 .navbar {
-  z-index: 100;
-  position: fixed;
   width: 100%;
   height: 70px;
   background-color: dodgerblue;
@@ -118,4 +89,19 @@ span {
   margin-right: 10px;
   color: white;
   font-weight: lighter;
+}
+
+
+#individual {
+  height: 500px;
+  width: 600px;
+}
+
+#individual .title,
+#individual .footer {
+  font-size: 30px;
+}
+
+#individual .body {
+  font-size: 25px;
 }
