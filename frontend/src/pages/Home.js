@@ -127,6 +127,8 @@ function Home() {
     });
 
   return (
+    <div className="homeWrapper">
+    <div className="headerText">Together for a better world!</div>
     <div className="homeContainer">
       <Formik
         initialValues={initialValues}
@@ -194,14 +196,16 @@ function Home() {
       </Formik>
 
       <br/>
+      <div className="mapConfirmContainer">
       <h1>Choose your location in the map: </h1>
-      <div className="Mapscontainer"> 
-        <div id='map'></div>
-        <div id='summary-route'></div>
-        <div id='summary-optimize'></div>
-        <button >Confirm</button>
+       <div className="Mapscontainer"> 
+          <div id='map'></div>
+          <div id='summary-route'></div>
+          <div id='summary-optimize'></div>
+          <button >Confirm</button>
+        </div>
       </div>
-
+      </div>
     </div>
   );
 }
